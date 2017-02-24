@@ -6,9 +6,7 @@
 </head>
 <style>
 
-/**
- * Checkbox wrapper
- */
+/* checkbox样式 img */
 .checkboxDiv  {
 	width: 25px;
 	margin: 20px;
@@ -17,9 +15,7 @@
 .checkboxDiv input{
 	visibility: hidden;
 }
-/**
- * Create the box for the checkbox
- */
+
 .checkboxDiv label {
 	cursor: pointer;
 	position: absolute;
@@ -31,24 +27,14 @@
 }
 
 
-/**
- * Display the tick inside the checkbox
- */
-.checkboxDiv label:after {
-	opacity: 0;
+.checkboxDiv input[type=checkbox]:checked + label:after {
+	opacity: 1;
 	content: url(./images/checkbox_on.png);
 	position: absolute;
 	width: 9px;
 	height: 5px;
 }
-
-/**
- * Create the checkbox state for the tick
- */
-.checkboxDiv input[type=checkbox]:checked + label:after {
-	opacity: 1;
-}
-
+/* radio样式 img */
 .radioDiv{
 	width: 25px;
 	margin: 20px;
@@ -74,22 +60,73 @@
 	width: 9px;
 	height: 5px;
 }
-.checkboxJS input{
+
+/* checkbox样式 css */
+.checkboxCss {
+	width: 25px;
+	margin: 20px;
+	position: relative;
+}
+.checkboxCss input{
+	visibility: hidden;
+	position: relative;
+}
+.checkboxCss label{
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    border: 1px #b8b8b8 solid;
+    box-shadow: inset 0 0 1px #ccc;
+    background: #fff;
+    margin-left: 2px;
+    line-height: .6;
+    vertical-align: middle;
+}
+
+.checkboxCss input[type=checkbox]:checked + label:after{
+	content: "\2713";
+	font-size: 22px;
+} 
+
+.radioCss{
+	width: 25px;
+	margin: 20px;
+	position: relative;
+}
+.radioCss input{
 	visibility: hidden;
 }
-.checkboxJS label{
-	display: inline-block;
-	cursor: pointer;
-	width: 16px;
-	height: 16px;
-	background: url(./images/checkbox.png);
+.radioCss label{
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    border: 1px #b8b8b8 solid;
+    border-radius: 50%;
+    box-shadow: inset 0 0 1px #ccc;
+    background: #fff;
+    margin-left: 2px;
+    line-height: .6;
+    vertical-align: middle;
 }
+.radioCss input[type=radio]:checked + label:after{
+	content: "\2022";
+	font-size: 32px;
+} 
+
+
 
 </style>
 <body>
 
 	<section>
 	  <!-- Checkbox CSS -->
+	  <h3>img</h3>
 	  	<div class="checkboxDiv">
 	  		<input type="checkbox" value="1" id="checkboxDivInput" name="" />
 		  	<label for="checkboxDivInput"></label>
@@ -104,11 +141,19 @@
 	  	</div>
 	</section>
 	<section>
-		<!-- Checkbox JS -->
-		<!-- <div id="test" class="checkboxJS">
-			  		<input type="checkbox" value="1" id="checkboxJS" name="" />
-		  	<label id="checkboxLabel" for="checkboxJS"></label>
-			  	</div> -->
+	<h3>css</h3>
+		<div class="checkboxCss">
+	  		<input type="checkbox" value="1" id="checkboxCssInput" name="" />
+		  	<label for="checkboxCssInput"></label>
+	  	</div>
+	  	<div class="radioCss">
+	  		<input type="radio" name="test" id="radioCss">
+	  		<label for="radioCss"></label>
+	  	</div>
+	  	<div class="radioCss">
+	  		<input type="radio" name="test" id="radioCss2">
+	  		<label for="radioCss2"></label>
+	  	</div>
 	</section>
 	<script>
 		(function(){
