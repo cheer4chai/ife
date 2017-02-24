@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自定义checkbox， radio样式</title>
+</head>
+<style>
+
+/**
+ * Checkbox wrapper
+ */
+.checkboxDiv  {
+	width: 25px;
+	margin: 20px;
+	position: relative;
+}
+.checkboxDiv input{
+	visibility: hidden;
+}
+/**
+ * Create the box for the checkbox
+ */
+.checkboxDiv label {
+	cursor: pointer;
+	position: absolute;
+	width: 16px;
+	height: 16px;
+	background: url(./images/checkbox.png);
+	top: 0;
+  	left: 0;
+}
+
+
+/**
+ * Display the tick inside the checkbox
+ */
+.checkboxDiv label:after {
+	opacity: 0;
+	content: url(./images/checkbox_on.png);
+	position: absolute;
+	width: 9px;
+	height: 5px;
+}
+
+/**
+ * Create the checkbox state for the tick
+ */
+.checkboxDiv input[type=checkbox]:checked + label:after {
+	opacity: 1;
+}
+
+.radioDiv{
+	width: 25px;
+	margin: 20px;
+	position: relative;
+}
+.radioDiv input{
+	visibility: hidden;
+}
+.radioDiv label {
+	cursor: pointer;
+	position: absolute;
+	width: 16px;
+	height: 16px;
+	background: url(./images/radio_off.png);
+	top: 0;
+  	left: 0;
+}
+
+.radioDiv input[type=radio]:checked + label:after {
+	opacity: 1;
+	content: url(./images/radio_on.png);
+	position: absolute;
+	width: 9px;
+	height: 5px;
+}
+.checkboxJS input{
+	visibility: hidden;
+}
+.checkboxJS label{
+	display: inline-block;
+	cursor: pointer;
+	width: 16px;
+	height: 16px;
+	background: url(./images/checkbox.png);
+}
+
+</style>
+<body>
+
+	<section>
+	  <!-- Checkbox CSS -->
+	  	<div class="checkboxDiv">
+	  		<input type="checkbox" value="1" id="checkboxDivInput" name="" />
+		  	<label for="checkboxDivInput"></label>
+	  	</div>
+	  	<div class="radioDiv">
+	  		<input type="radio" name="test" id="radioInput">
+	  		<label for="radioInput"></label>
+	  	</div>
+	  	<div class="radioDiv">
+	  		<input type="radio" name="test" id="radioInput2">
+	  		<label for="radioInput2"></label>
+	  	</div>
+	</section>
+	<section>
+		<!-- Checkbox JS -->
+		<!-- <div id="test" class="checkboxJS">
+			  		<input type="checkbox" value="1" id="checkboxJS" name="" />
+		  	<label id="checkboxLabel" for="checkboxJS"></label>
+			  	</div> -->
+	</section>
+	<script>
+		(function(){
+
+			/*document.getElementById('test').onclick = function(e) {
+				var label = document.getElementById('checkboxLabel');
+				var bg = label.style.background;
+				console.log(window.getComputedStyle(label, null).getPropertyValue("background-image"))
+				if(window.getComputedStyle(label, null).getPropertyValue("background-image") == "url(./images/checkbox.png)"){
+					label.style.background = "url(./images/checkbox_on.png)";
+				}
+			}*/
+
+		})()
+	</script>
+</body>
+</html>
