@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+    <script type="text/javascript" src="js/three.js"></script>
+</head>
+<body onload="init()">
+    <canvas id="mainCanvas" width="800px" height="600px" ></canvas>
+
+    <script>
+        window.onload = function () {
+            var setThree = function () {
+                // renderer
+                var renderer = new THREE.WebGLRenderer({
+                    canvas: document.getElementById('mainCanvas')
+                });
+                renderer.setClearColor(0x000000); // black
+
+                // scene
+                var scene = new THREE.Scene();
+
+                // camera
+                var camera = new THREE.OrthographicCamera(-4, 4, 3, -3, 1, 50);
+                camera.position.set(20, 20, 20);
+                camera.lookAt(new THREE.Vector3(0, 0, 0));
+                scene.add(camera);
+
+                // a cube in the scene
+
+                var cube = new THREE.Mesh(new THREE.CubeGeometry(3, 1,2),
+                    new THREE.MeshLambertMaterial({
+                        color: 0xF0F8FF
+                    })
+                );
+
+
+                var torus1 = new THREE.Mesh(new THREE.TorusGeometry(0.2, 0.06, 6, 9),
+                    new THREE.MeshLambertMaterial({
+                        color: 0xF0F8FF
+                    })
+                );
+
+                var torus2 = new THREE.Mesh(new THREE.TorusGeometry(0.2, 0.06, 6, 9),
+                    new THREE.MeshLambertMaterial({
+                        color: 0xF0F8FF
+                    })
+                );
+
+                var torus3 = new THREE.Mesh(new THREE.TorusGeometry(0.2, 0.06, 6, 9),
+                    new THREE.MeshLambertMaterial({
+                        color: 0xF0F8FF
+                    })
+                );
+
+                var torus4 = new THREE.Mesh(new THREE.TorusGeometry(0.2, 0.06, 6, 9),
+                    new THREE.MeshLambertMaterial({
+                        color: 0xF0F8FF
+                    })
+                );
+                torus1.position.set(-0.8, -0.5,1);
+                torus2.position.set(0.8, -0.5,1);
+                torus3.position.set(-0.8, -0.5,-1);
+                torus4.position.set(0.8, -0.5,-1);
+                scene.add(cube);
+                scene.add(torus1,torus2,torus3,torus4);
+                // light
+                var light = new THREE.PointLight(0xffffff, 1, 100);
+                light.position.set(10, 15, 5);
+                scene.add(light);
+                // render
+                renderer.render(scene, camera);
+            };
+            var init = function () {
+                setThree();
+            };
+            init();
+        }
+    </script>
+</body>
+</html>
