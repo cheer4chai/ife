@@ -22,7 +22,7 @@
 
                 // camera
                 var camera = new THREE.OrthographicCamera(-4, 4, 3, -3, 1, 50);
-                camera.position.set(20, 20, 20);
+                camera.position.set(10, 5, 10);
                 camera.lookAt(new THREE.Vector3(0, 0, 0));
                 scene.add(camera);
 
@@ -35,25 +35,25 @@
                 );
 
 
-                var torus1 = new THREE.Mesh(new THREE.TorusGeometry(0.2, 0.06, 6, 9),
+                var torus1 = new THREE.Mesh(new THREE.TorusGeometry(0.3, 0.1, 12, 18),
                     new THREE.MeshLambertMaterial({
                         color: 0xF0F8FF
                     })
                 );
 
-                var torus2 = new THREE.Mesh(new THREE.TorusGeometry(0.2, 0.06, 6, 9),
+                var torus2 = new THREE.Mesh(new THREE.TorusGeometry(0.3, 0.1, 12, 18),
                     new THREE.MeshLambertMaterial({
                         color: 0xF0F8FF
                     })
                 );
 
-                var torus3 = new THREE.Mesh(new THREE.TorusGeometry(0.2, 0.06, 6, 9),
+                var torus3 = new THREE.Mesh(new THREE.TorusGeometry(0.3, 0.1, 12, 18),
                     new THREE.MeshLambertMaterial({
                         color: 0xF0F8FF
                     })
                 );
 
-                var torus4 = new THREE.Mesh(new THREE.TorusGeometry(0.2, 0.06, 6, 9),
+                var torus4 = new THREE.Mesh(new THREE.TorusGeometry(0.3, 0.1, 12, 18),
                     new THREE.MeshLambertMaterial({
                         color: 0xF0F8FF
                     })
