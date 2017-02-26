@@ -1,0 +1,63 @@
+*{
+    margin: 0;
+    padding:0;
+}
+body {
+    font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
+}
+a, img {
+    -webkit-touch-callout: none; /* 禁止长按链接与图片弹出菜单 */
+}
+html, body {
+    -webkit-user-select: none;   /* 禁止选中文本（如无文本选中需求，此为必选项） */
+    -moz-user-select: none;
+     -ms-user-select: none;
+         user-select: none;
+}
+.title{
+	height: 8rem;
+	line-height: 8rem;
+	font-size: 6rem;
+	color: white;
+	background-color: #91d4da;
+	text-align: center;
+}
+.title .back{
+	float: left;
+	display: flex;
+	align-items: center;
+}
+.title .back .backimg{
+	display: inline-block;
+	height: 5rem;
+	width: 5rem;
+	background: url(../images/back.png);
+	background-size: 5rem;
+}
+.title .back p{
+	display: inline-block;
+	margin-left: 1rem;
+}
+.title .titleText{
+	display: inline-block;
+	margin-left: -12rem;
+}
+.nav{
+	display: flex;
+	height: 8rem;
+	line-height: 8rem;
+	font-size: 6rem;
+	border-bottom: 0.1rem solid blue;
+	list-style-type: none;
+}
+.nav li{
+
+	width: 20rem;
+	text-align: center;
+}
+.nav .navOn{
+	border-bottom: 0.5rem solid #91d4da;
+}
+.banner img{
+	width: 100%;
+}
