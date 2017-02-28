@@ -14,6 +14,9 @@ html, body {
      -ms-user-select: none;
          user-select: none;
 }
+.clear{
+	clear: both;
+}
 .title{
 	height: 8rem;
 	line-height: 8rem;
@@ -60,4 +63,106 @@ html, body {
 }
 .banner img{
 	width: 100%;
+}
+.tips{
+	display: flex;
+	justify-content: space-around;
+	margin-top: 1rem;
+	font-size: 4rem;
+}
+.tips>.tipsBox>img{
+	width: 4rem;
+	padding: 1.5rem;
+	background-color: #00c7d6;
+	border-radius: 100%;
+}
+.tips>.tipsBox>p{
+	margin-top: 1rem;
+	text-align: center;
+}
+.column{
+	display: flex;
+	margin-top: 2rem;
+	border-top: 0.3rem solid #00c7d6;
+}
+.column .columnBox{
+	width: 33%;
+	margin-top: 2rem;
+	text-align: center;
+}
+.borderLeft{
+	border-left: 0.3rem solid #00c7d6;
+}
+.column .columnBox h2{
+	font-size: 5rem;
+}
+
+.column .columnBox h3{
+	color: #5a5a5a;
+	font-size: 3.5rem;
+}
+
+.block{
+	margin-top: 2rem;
+}
+.block h2{
+	font-size: 5rem;
+	padding: 2rem;
+	border-bottom: 0.2rem solid #00c7d6;
+}
+.block .section{
+	padding: 0 2rem;
+}
+.block .section img{
+	float: left;
+	width: 20%;
+}
+.block .section ul{
+	float: left;
+	width: 80%
+}
+.block .section ul li{
+	display: inline-block;
+	width: 12rem;
+	height: 4rem;
+	line-height: 4rem;
+	padding: 0.5rem 3rem;
+	font-size: 3rem;
+	background-color: #f8f8f8;
+	text-align: center;
+}
+.article{
+	margin-top: 2rem;
+	padding: 0 2rem;
+}
+.onePic .articleTitle{
+	font-size: 3.5rem;
+	height: 4.5rem;
+	line-height: 2.2rem;
+	font-weight: bold;
+}
+.onePic span{
+	display: inline-block;
+}
+.onePic .content{
+	width: 30rem;
+	margin-left: 2rem;
+	vertical-align: top;
+}
+.onePic img{
+	width: 10rem;
+}
+.gray{
+	font-size: 2.5rem;
+	color: gray;
+}
+.pics{
+	margin-top: 2rem;
+}
+.pics .articleTitle{
+	font-size: 3.5rem;
+	font-weight: bold;
+}
+.pics img{
+	width: 32%;
 }
