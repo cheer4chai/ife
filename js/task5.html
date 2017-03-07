@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            margin:0;
+            padding:20px;
+        }
+        .inputNum{
+            width:120px;
+            height:36px;
+            line-height: 36px;
+            padding: 0 5px;
+        }
+        input[type='button']{
+            width: 60px;
+            height: 30px;
+            border: 0;
+            cursor: pointer;
+        }
+        .showBox .box{
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            margin: 20px;
+            background-color: #cccccc;
+            line-height: 60px;
+            text-align: center;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+<div class="">
+    <input type="text" id="inputNum">
+    <input type="button" id="leftIn" value="左侧入">
+    <input type="button" id="rightIn" value="右侧入">
+    <input type="button" id="leftOut" value="左侧出">
+    <input type="button" id="rightOut" value="右侧出">
+</div>
+<div class="showBox" id="showBox">
+
+</div>
+<script>
+    (function (window) {
+
+        function bubbleSort(arr) {
+            var temp;
+            var html = '';
+            for(var i=0;i<arr.length;i++) {
+                console.log(arr);
+                html += show(arr,html);
+                for(var j=arr.length-1;j>=i;j--) {
+                    if (arr[i] > arr[j]){
+                        temp = arr[i];
+                        arr[i] = arr[j];
+                        arr[j] = temp;
+                    }
+                }
+                document.getElementById('showBox').innerHTML = html;
+            }
+
+            return arr;
+        }
+
+
+        var arr = [];
+        var showBox = document.getElementById('showBox');
+        showBox.innerHTML = '';
+        var show = function (arr,html) {
+            html += '<div>';
+            for(var i=0;i<arr.length;i++){
+                html += '<div class="box">' + arr[i] + '</div>';
+            }
+            html += '</div>';
+            return html;
+        };
+        var getNum = function () {
+            if(!document.getElementById('inputNum').value){
+                alert('请输入数字！');return false;
+            }else {
+                return(Number(document.getElementById('inputNum').value));
+            }
+
+        };
+        var click = function () {
+            var leftIn = document.getElementById('leftIn');
+            var rightIn = document.getElementById('rightIn');
+            var leftOut = document.getElementById('leftOut');
+            var rightOut = document.getElementById('rightOut');
+            leftIn.onclick = function () {
+                var num = getNum();
+                arr.unshift(num);
+                bubbleSort(arr);
+            };
+            rightIn.onclick = function () {
+                var num = getNum();
+                arr.push(num);
+                bubbleSort(arr);
+            };
+            leftOut.onclick = function () {
+                arr.shift();
+                bubbleSort(arr);
+            };
+            rightOut.onclick = function () {
+                arr.pop();
+                bubbleSort(arr);
+            };
+        };
+        click();
+
+    })(window)
+</script>
+</body>
+</html>
