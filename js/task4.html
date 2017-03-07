@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IFE JavaScript Task 03</title>
+    <style>
+        body{
+            margin:0;
+            padding:20px;
+        }
+        .inputNum{
+            width:120px;
+            height:36px;
+            line-height: 36px;
+            padding: 0 5px;
+        }
+        input[type='button']{
+            width: 60px;
+            height: 30px;
+            border: 0;
+            cursor: pointer;
+        }
+        .showBox div{
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            margin: 20px;
+            background-color: #cccccc;
+            line-height: 60px;
+            text-align: center;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+<div class="">
+    <input type="text" id="inputNum">
+    <input type="button" id="leftIn" value="左侧入">
+    <input type="button" id="rightIn" value="右侧入">
+    <input type="button" id="leftOut" value="左侧出">
+    <input type="button" id="rightOut" value="右侧出">
+</div>
+<div class="showBox" id="showBox">
+
+</div>
+<script>
+    (function (window) {
+
+        var arr = [];
+        var showBox = document.getElementById('showBox');
+        var show = function (arr) {
+            var html = '';
+            for(var i=0;i<arr.length;i++){
+                html += '<div>' + arr[i] + '</div>';
+            }
+            showBox.innerHTML = html;
+        };
+        var getNum = function () {
+            if(!document.getElementById('inputNum').value){
+                alert('请输入数字！');return false;
+            }else {
+                return(document.getElementById('inputNum').value);
+            }
+
+        };
+        var click = function () {
+            var leftIn = document.getElementById('leftIn');
+            var rightIn = document.getElementById('rightIn');
+            var leftOut = document.getElementById('leftOut');
+            var rightOut = document.getElementById('rightOut');
+            leftIn.onclick = function () {
+                var num = getNum();
+                arr.unshift(num);
+                show(arr);
+            };
+            rightIn.onclick = function () {
+                var num = getNum();
+                arr.push(num);
+                show(arr);
+            };
+            leftOut.onclick = function () {
+                arr.shift();
+                show(arr);
+            };
+            rightOut.onclick = function () {
+                arr.pop();
+                show(arr);
+            };
+        };
+        click();
+
+    })(window)
+</script>
+</body>
+</html>
