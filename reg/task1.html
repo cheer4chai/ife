@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 01</title>
+</head>
+<body>
+    <div>
+        <span>请输入手机号码：</span>
+        <input type="text" id="telephoneNum">
+    </div>
+    <div>
+        <span>请输入字符串：</span>
+        <input type="text" id="strings">
+    </div>
+    <input type="button" value="验证" id="check">
+<script>
+    (function (window) {
+        var check = document.getElementById('check');
+        check.onclick = function () {
+            var telephone = document.getElementById('telephoneNum').value;
+            var strings = document.getElementById('strings').value;
+            var RegExp1 = /\d{11}/;
+            console.log(RegExp1.test(telephone));
+            var RegExp2= /\b([A-Za-z]+)\s+\1\b/;
+            console.log(RegExp2.test(strings));
+        }
+
+    })(window)
+</script>
+</body>
+</html>
