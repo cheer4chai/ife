@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IFE JavaScript Task 07</title>
+    <style>
+        div{
+            border: 1px solid #5a5a5a;
+            background-color: white;
+        }
+
+        .tree,.firstnodes ,.secondnodes{
+            display: flex;
+            padding:20px;
+            justify-content: space-around;
+        }
+        .tree{
+            width: 720px;
+        }
+        .firstnodes{
+            width:300px;
+        }
+        .secondnodes{
+            width: 100px;
+        }
+        .thirdnodes{
+            display: inline-block;
+            width: 40px;
+            height:20px;
+
+        }
+    </style>
+</head>
+<body>
+<div class="tree">
+    <div class="firstnodes">
+        <div class="secondnodes">
+            <div class="thirdnodes"></div>
+            <div class="thirdnodes"></div>
+        </div>
+        <div class="secondnodes">
+            <div class="thirdnodes"></div>
+            <div class="thirdnodes"></div>
+        </div>
+    </div>
+    <div class="firstnodes">
+        <div class="secondnodes">
+            <div class="thirdnodes"></div>
+            <div class="thirdnodes"></div>
+        </div>
+        <div class="secondnodes">
+            <div class="thirdnodes"></div>
+            <div class="thirdnodes"></div>
+        </div>
+    </div>
+</div>
+
+    <input id="preBtn" type="button" value="前">
+    <input id="inBtn" type="button" value="中">
+    <input id="postBtn" type="button" value="后">
+
+<script>
+    (function (window) {
+        var preBtn = document.getElementById('preBtn');
+        var inBtn = document.getElementById('inBtn');
+        var postBtn = document.getElementById('postBtn');
+        var tree = document.getElementsByClassName('tree')[0];
+        var timer = null;
+        var arr = [];
+        
+        preBtn.onclick = function () {
+            reset();
+            preOrder(tree);
+            changeColor();
+        };
+        inBtn.onclick = function () {
+            reset();
+            inOrder(tree);
+            changeColor();
+        };
+        postBtn.onclick = function () {
+            reset();
+            postOrder(tree);
+            console.log(arr);
+            changeColor();
+        };
+        //前序遍历
+        var preOrder = function (node) {
+            if( !(node == null)) {
+                arr.push(node);
+                preOrder(node.firstElementChild);
+                preOrder(node.lastElementChild);
+            }
+        };
+
+        //中序遍历
+        var inOrder = function (node) {
+            if( !(node == null)) {
+                inOrder(node.firstElementChild);
+                arr.push(node);
+                inOrder(node.lastElementChild);
+            }
+        };
+
+        //后序遍历
+        var postOrder = function (node) {
+            if( !(node == null)) {
+                postOrder(node.firstElementChild);
+                postOrder(node.lastElementChild);
+                arr.push(node);
+            }
+        };
+
+        var changeColor = function () {
+            var i = 0;
+            arr[i].style.backgroundColor = 'gray';
+            timer = setInterval(function () {
+                i++;
+                if (i<arr.length){
+                    arr[i-1].style.backgroundColor = '#fff';
+                    arr[i].style.backgroundColor = 'gray';
+                }else {
+                    clearInterval(timer);
+                    arr[arr.length-1].style.backgroundColor = '#fff';
+                }
+            },500);
+
+        };
+        
+        var reset = function () {
+            arr = [];
+            clearInterval(timer);
+            var divs = document.getElementsByTagName('div');
+            for (var i = 0; i < divs.length; i++) {
+                divs[i].style.backgroundColor = '#fff';
+            }
+        };
+
+    })(window)
+</script>
+</body>
+</html>
