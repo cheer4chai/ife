@@ -8,12 +8,6 @@
             margin:0;
             padding:20px;
         }
-        .inputNum{
-            width:120px;
-            height:36px;
-            line-height: 36px;
-            padding: 0 5px;
-        }
         input[type='button']{
             width: 60px;
             height: 30px;
@@ -34,7 +28,9 @@
 </head>
 <body>
 <div class="">
-    <input type="text" id="inputNum">
+    <div>
+        <textarea name="inputText" id="inputText" cols="30" rows="10"></textarea>
+    </div>
     <input type="button" id="leftIn" value="左侧入">
     <input type="button" id="rightIn" value="右侧入">
     <input type="button" id="leftOut" value="左侧出">
@@ -56,12 +52,9 @@
             showBox.innerHTML = html;
         };
         var getNum = function () {
-            if(!document.getElementById('inputNum').value){
-                alert('请输入数字！');return false;
-            }else {
-                return(document.getElementById('inputNum').value);
-            }
-
+            var string = document.getElementById('inputText').value;
+            var arr = string.split(/\s+|[\s/、/,/，]/)
+            return arr;
         };
         var click = function () {
             var leftIn = document.getElementById('leftIn');
@@ -69,13 +62,17 @@
             var leftOut = document.getElementById('leftOut');
             var rightOut = document.getElementById('rightOut');
             leftIn.onclick = function () {
-                var num = getNum();
-                arr.unshift(num);
+                var addArr = getNum();
+                for(var i=0;i<addArr.length;i++){
+                    arr.unshift(addArr[i]);
+                }
                 show(arr);
             };
             rightIn.onclick = function () {
-                var num = getNum();
-                arr.push(num);
+                var addArr = getNum();
+                for(var i=0;i<addArr.length;i++){
+                    arr.push(addArr[i]);
+                }
                 show(arr);
             };
             leftOut.onclick = function () {
