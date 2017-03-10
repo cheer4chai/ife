@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IFE JavaScript Task 07</title>
+    <style>
+        div{
+            border: 1px solid #5a5a5a;
+            background-color: white;
+        }
+
+        .tree,.firstnodes ,.secondnodes{
+            display: flex;
+            padding:10px;
+            justify-content: space-around;
+            margin: 5px;
+        }
+        .thirdnodes{
+            display: inline-block;
+            width: 20px;
+            height:20px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="tree">
+    <div class="firstnodes">
+        <div class="secondnodes">
+            <div class="thirdnodes"></div>
+            <div class="thirdnodes"></div>
+            <div class="thirdnodes"></div>
+            <div class="thirdnodes"></div>
+        </div>
+        <div class="secondnodes"></div>
+        <div class="secondnodes">
+            <div class="thirdnodes"></div>
+            <div class="thirdnodes"></div>
+        </div>
+    </div>
+    <div class="firstnodes">
+        <div class="secondnodes">
+            <div class="thirdnodes"></div>
+            <div class="thirdnodes"></div>
+            <div class="thirdnodes"></div>
+            <div class="thirdnodes"></div>
+        </div>
+        <div class="secondnodes">
+            <div class="thirdnodes"></div>
+            <div class="thirdnodes"></div>
+        </div>
+        <div class="secondnodes">
+            <div class="thirdnodes"></div>
+            <div class="thirdnodes"></div>
+        </div>
+    </div>
+</div>
+
+<input id="depBtn" type="button" value="深度">
+<input id="wideBtn" type="button" value="广度">
+
+<script>
+    (function (window) {
+
+        var depBtn = document.getElementById('depBtn');
+        var wideBtn = document.getElementById('wideBtn');
+        var tree = document.getElementsByClassName('tree')[0];
+        var timer = null;
+        var arr = [];
+
+        depBtn.onclick = function () {
+            reset();
+            deepTvs(tree);
+            changeColor();
+        };
+        wideBtn.onclick = function () {
+            reset();
+            wideTvs(tree);
+            changeColor();
+        };
+        function deepTvs(node) {
+            if (!(node == null)) {
+                arr.push(node);
+                for (var i = 0; i < node.children.length; i++) {
+                    deepTvs(node.children[i]);
+                }
+            }
+        }
+
+        //广度优先遍历
+        function wideTvs(node) {
+            arr.push(node);
+            var stack = [];
+            for (var i = 0, len = node.children.length; i < len; i++) {
+                stack.push(node.children[i]);
+            }
+            var item = [];
+            while (stack.length) {
+                item = stack.shift();
+                arr.push(item);
+                //如果该节点有子节点，继续添加进入栈底
+                if (item.children && item.children.length) {
+                    for(var j=0;j<item.children.length;j++){
+                        stack.push(item.children[j]);
+                    }
+                }
+            }
+
+        }
+
+        var changeColor = function () {
+            var i = 0;
+            arr[i].style.backgroundColor = 'gray';
+            timer = setInterval(function () {
+                i++;
+                if (i<arr.length){
+                    arr[i-1].style.backgroundColor = '#fff';
+                    arr[i].style.backgroundColor = 'gray';
+                }else {
+                    clearInterval(timer);
+                    arr[arr.length-1].style.backgroundColor = '#fff';
+                }
+            },500);
+
+        };
+
+        var reset = function () {
+            arr = [];
+            clearInterval(timer);
+            var divs = document.getElementsByTagName('div');
+            for (var i = 0; i < divs.length; i++) {
+                divs[i].style.backgroundColor = '#fff';
+            }
+        };
+
+    })(window)
+</script>
+</body>
+</html>
