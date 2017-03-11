@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>IFE JavaScript Task 08</title>
+    <title>IFE JavaScript Task 09</title>
     <style>
         div{
             border: 1px solid #5a5a5a;
@@ -20,6 +20,9 @@
             width: 20px;
             height:20px;
             margin: 5px;
+        }
+        .on{
+            background-color: #00c7d6;
         }
     </style>
 </head>
@@ -58,12 +61,16 @@
 
 <input id="depBtn" type="button" value="深度">
 <input id="wideBtn" type="button" value="广度">
+<input id="addBtn" type="button" value="添加">
+<input id="delBtn" type="button" value="删除">
 
 <script>
     (function (window) {
 
         var depBtn = document.getElementById('depBtn');
         var wideBtn = document.getElementById('wideBtn');
+        var addBtn = document.getElementById('addBtn');
+        var delBtn = document.getElementById('delBtn');
         var tree = document.getElementsByClassName('tree')[0];
         var timer = null;
         var arr = [];
@@ -78,6 +85,7 @@
             wideTvs(tree);
             changeColor();
         };
+
         function deepTvs(node) {
             if (!(node == null)) {
                 arr.push(node);
@@ -132,6 +140,65 @@
                 divs[i].style.backgroundColor = '#fff';
             }
         };
+
+        var box = document.getElementsByTagName('div');
+        addBtn.onclick = function () {
+            for(var i=0;i<box.length;i++) {
+                if (hasClass(box[i],'on')){
+                    var div = document.createElement("div");
+                    if (hasClass(box[i],'tree')){
+                        div.className = 'firstnodes';
+                    }else if (hasClass(box[i],'firstnodes')){
+                        div.className = 'secondnodes';
+                    }else if (hasClass(box[i], 'secondnodes')){
+                        div.className = 'thirdnodes';
+                    }else {
+                        alert('请选择上一级节点')
+                    }
+                    box[i].appendChild(div);
+                }
+            }
+        };
+        delBtn.onclick = function () {
+            for(var i=0;i<box.length;i++) {
+                if (hasClass(box[i],'on')){
+                    box[i].innerHTML = '';
+                }
+            }
+        };
+        var hasClass = function (node ,className) {
+            var Reg = new RegExp('\\s| '+className+'\\s| ');
+            return(Reg.test(node.className));
+        }
+        var addClass = function (node ,className) {
+            var nowClass = node.className.split(' ');
+            for(var i=0;i<nowClass.length;i++) {
+                if (nowClass[i]==className){return false;}
+            }
+            node.className += ' '+className;
+        };
+        var resetClass = function () {
+            for (var i=0;i<box.length;i++){
+                if(hasClass(box[i],'on')){
+                    var className = box[i].className;
+                    box[i].className = className.split(' ')[0];
+                }
+            }
+        };
+        var choiceDom = function (node) {
+            node.onclick = function (event) {
+                console.log(node);
+                resetClass();
+                addClass(node, "on");
+                event.stopPropagation('body');
+            }
+
+        };
+        for(var i=0;i<box.length;i++){
+            choiceDom(box[i]);
+        }
+
+
 
     })(window)
 </script>
