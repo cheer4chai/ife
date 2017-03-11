@@ -41,7 +41,8 @@
             test(inputContent);
         }
         var test = function (String) {
-            for (var i=0;i<String.length;i++) {
+            for (var i=0;i<=String.length;i++) {
+
                 String = String.replace(/[^x00-xff]/g,'AB');
                 if (String.length<4 || String.length>16){
                     prompt.innerHTML = "字符数应为4~16位"
