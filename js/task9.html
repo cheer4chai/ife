@@ -7,18 +7,10 @@
         div{
             border: 1px solid #5a5a5a;
             background-color: white;
-        }
-
-        .tree,.firstnodes ,.secondnodes{
             display: flex;
+            display: inline-block;
             padding:10px;
             justify-content: space-around;
-            margin: 5px;
-        }
-        .thirdnodes{
-            display: inline-block;
-            width: 20px;
-            height:20px;
             margin: 5px;
         }
         .on{
@@ -146,15 +138,6 @@
             for(var i=0;i<box.length;i++) {
                 if (hasClass(box[i],'on')){
                     var div = document.createElement("div");
-                    if (hasClass(box[i],'tree')){
-                        div.className = 'firstnodes';
-                    }else if (hasClass(box[i],'firstnodes')){
-                        div.className = 'secondnodes';
-                    }else if (hasClass(box[i], 'secondnodes')){
-                        div.className = 'thirdnodes';
-                    }else {
-                        alert('请选择上一级节点')
-                    }
                     box[i].appendChild(div);
                 }
             }
@@ -169,7 +152,7 @@
         var hasClass = function (node ,className) {
             var Reg = new RegExp('\\s| '+className+'\\s| ');
             return(Reg.test(node.className));
-        }
+        };
         var addClass = function (node ,className) {
             var nowClass = node.className.split(' ');
             for(var i=0;i<nowClass.length;i++) {
@@ -179,10 +162,7 @@
         };
         var resetClass = function () {
             for (var i=0;i<box.length;i++){
-                if(hasClass(box[i],'on')){
-                    var className = box[i].className;
-                    box[i].className = className.split(' ')[0];
-                }
+                box[i].className = '';
             }
         };
         var choiceDom = function (node) {

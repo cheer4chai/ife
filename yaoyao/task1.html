@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task01</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .inputBox{
+            display: inline-block;
+            height:36px;
+            line-height:36px;
+            width: 300px;
+            border: 1px solid #5a5a5a;
+        }
+        .inputButton{
+            display: inline-block;
+            height: 36px;
+            width: 60px;
+            margin-left: 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #5a5a5a;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <input class="inputBox" type="text">
+        <input class="inputButton" type="button" value="check">
+    </div>
+    <div id="prompt"></div>
+    <script>
+        var inputButton = document.getElementsByClassName('inputButton')[0];
+        var prompt = document.getElementById('prompt');
+        inputButton.onclick = function () {
+            var inputContent = document.getElementsByClassName('inputBox')[0].value;
+            test(inputContent);
+        }
+        var test = function (String) {
+            for (var i=0;i<String.length;i++) {
+                String = String.replace(/[^x00-xff]/g,'AB');
+                if (String.length<4 || String.length>16){
+                    prompt.innerHTML = "字符数应为4~16位"
+                }else {
+                    prompt.innerHTML = ""
+                }
+            }
+        }
+    </script>
+</body>
+</html>
