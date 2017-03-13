@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task02</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .condBox{
+            margin: 10px;
+        }
+        .inputBox{
+            display: inline-block;
+            height:36px;
+            line-height:36px;
+            width: 300px;
+            padding: 0 5px;
+            border: 1px solid #5a5a5a;
+        }
+        .condition{
+            display: inline-block;
+            width: 120px;
+        }
+        .hint{
+            display: none;
+        }
+        .hint,.wrong,.right{
+            margin-left: 130px;
+        }
+    </style>
+</head>
+<body>
+    <div class="condBox"><span class="condition">名称：</span><input id="t1" class="inputBox" type="text"></div>
+    <div id="h1" class="hint">必填，长度为4~16位字符</div>
+    <div class="condBox"><span class="condition">密码：</span><input id="t2" class="inputBox" type="password"></div>
+    <div id="h2" class="hint">必填，长度为4~16位字符,包含字母和数字</div>
+    <div class="condBox"><span class="condition">密码确认：</span><input id="t3" class="inputBox" type="password"></div>
+    <div id="h3" class="hint">必填，必须与密码相同</div>
+    <div class="condBox"><span class="condition">邮箱：</span><input id="t4" class="inputBox" type="text"></div>
+    <div id="h4" class="hint">填写正确的邮箱格式</div>
+    <div class="condBox"><span class="condition">手机：</span><input id="t5" class="inputBox" type="text"></div>
+    <div id="h5" class="hint">填写正确的手机号码</div>
+    <script>
+        (function (window) {
+
+            var hintText=[{hint:"必填，长度为4~16位字符",right:"名称格式正确",wrong:"名称格式有误",isPassed:false},
+                {hint:"必填，长度为4~16位字符,包含字母和数字",right:"密码可用",wrong:"密码不可用",isPassed:false},
+                {hint:"必填，必须与密码相同",right:"密码输入一致",wrong:"密码输入不一致",isPassed:false},
+                {hint:"填写正确的邮箱格式",right:"邮箱格式正确",wrong:"邮箱格式错误",isPassed:false},
+                {hint:"必填，长度为4~16位字符",right:"手机格式正确",wrong:"手机格式错误",isPassed:false}];
+
+            var regEvent=function(node, event, func){
+                if (node.addEventListener)
+                    node.addEventListener(event, func);
+                else if (node.attachEvent)
+                    node.attachEvent("on" + event, func);
+                else
+                    node["on" + event] = func;
+            };
+
+            function regValue(id) {
+                var flag = false;
+                var input=document.getElementById("t"+id);
+                var hint=document.getElementById("h"+id);
+                var value = input.value;
+                switch (parseInt(id)) {
+                    case 1:
+                        flag=/^[a-zA-Z0-9_]{4,16}$/.test(value.replace(/[\u0391-\uFFE5]/g,"nn"));
+                        break;
+                    case 2:
+                        flag=/^\S{4,16}$/.test(value);
+                        break;
+                    case 3:
+                        flag=document.getElementById("t2").value==value;
+                        break;
+                    case 4:
+                        flag=/^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}/
+                        break;
+                    case 5:
+                        flag=/^[1][0-9]{10}$/.test(value);
+                        break;
+                }
+                if(flag) {
+                    input.style.borderColor = "green";
+                    hint.className="right";
+                    hint.innerHTML=hintText[id-1].right;
+                    hintText[id-1].isPassed=false;
+                }else{
+                    input.style.borderColor = "red";
+                    hint.className="wrong";
+                    hint.innerHTML=hintText[id-1].wrong;
+                    hintText[id-1].isPassed=true;
+                }
+            }
+            var inputs=document.getElementsByTagName("input");
+            [].forEach.call(inputs,function (e) {
+                var id=e.getAttribute("id").slice(1);
+                var hintID="h"+e.getAttribute("id").slice(1);
+                regEvent(e,"focus",function(){
+                    document.getElementById(hintID).style.display="block";
+                });
+                regEvent(e,"blur",function(){regValue(id)});
+            })
+
+
+        })(window)
+    </script>
+</body>
+</html>
