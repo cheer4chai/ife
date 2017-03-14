@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task03</title>
+    <style>
+        body{
+            padding: 50px;
+        }
+        .radioBox{
+            margin-bottom: 20px;
+        }
+        .hide{
+            display: none;
+        }
+        .select{
+            margin-left: 30px;
+            width: 160px;
+            height: 34px;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+            -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+        }
+        .work{
+            border: 2px solid #a8a8a8;
+            font-size: 25px;
+            border-radius: 5px;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+<div class="radioBox" onchange="radioChange()">
+    <input type="radio" name="school" id="school" checked>
+    <label for="school">在校生</label>
+    <input type="radio" name="school" id="unschool">
+    <label for="unschool">非在校生</label>
+</div>
+<div id="inschool">
+    <span>学校</span>
+    <select class="select" id="select1" onchange="selectDistrict()">
+        <option value="bj">北京</option>
+        <option value="sh">上海</option>
+        <option value="hz">杭州</option>
+    </select>
+    <select class="select" id="select2">
+        <option value="bj">北京大学</option>
+        <option value="sh">清华大学</option>
+        <option value="hz">北京航空航天大学</option>
+    </select>
+</div>
+<div id="outschool" class="hide">
+    <span>就业单位</span>
+    <input class="work" type="text">
+</div>
+
+<script>
+        var school = document.getElementById('school');
+        var unschool = document.getElementById('unschool');
+        var radioChange = function () {
+
+            if (school.checked) {
+                document.getElementById('inschool').className = "";
+                document.getElementById('outschool').className = "hide";
+            }
+            if (unschool.checked) {
+                document.getElementById('inschool').className = "hide";
+                document.getElementById('outschool').className = "";
+            }
+        }
+        var selectDistrict = function () {
+            var data = {
+                bj: ["北京大学", "清华大学", "北京航空航天大学"],
+                sh: ["复旦大学", "上海交通大学", "同济大学"],
+                hz: ["浙江大学", "杭州电子科技大学", "浙江工业大学"]
+            }
+            var source = document.getElementById('select1');
+            var target = document.getElementById("select2");
+            var selected = source.options[source.selectedIndex].value;
+            target.innerHTML = '';
+            for(var i=0;i<data[selected].length;i++) {
+                var opt = document.createElement('option');
+                opt.value = data[selected][i];
+                opt.innerHTML = data[selected][i];
+                document.getElementById('select2').appendChild(opt);
+            }
+        }
+
+</script>
+</body>
+</html>
