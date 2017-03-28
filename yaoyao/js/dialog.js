@@ -5,6 +5,7 @@
 
     var dialog = function (opt) {
         var opt = opt || {};
+        this.config = opt;
         this.title = opt.title || '提示';
         this.content = opt.content || '';
         this.btn = opt.btn || [{
@@ -191,6 +192,25 @@
                     }
                 })(i);
             }
+
+        },
+        _adddragEvent: function () {
+            var _this = this;
+            var handle = document.getElementsByClassName('dialogTitle')[0];
+            var box = document.getElementsByClassName('dialogBox')[0];
+            handle.draggable = true;
+            handle.ondragstart = function(event) {
+                _this.config.x = event.offsetX;
+                _this.config.y = event.offsetY;
+                console.log(_this.config.x);
+                console.log(_this.config.y);
+            };
+            handle.ondragend = function(event) {
+                box.style.left =  event.clientX - _this.config.x + 200 + "px";
+                box.style.top =  event.clientY - _this.config.y + 100 + "px";
+                console.log("end"+box.style.left);
+                console.log("end"+box.style.top);
+            };
         },
         _destroy: function () {
             document.body.removeChild(document.getElementsByClassName('dialogWrap')[0]);
@@ -199,6 +219,7 @@
             this._addDom();
             this._addStyle();
             this._addbuttonEvent();
+            this._adddragEvent();
         }
     };
 
